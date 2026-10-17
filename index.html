@@ -289,6 +289,8 @@ section[id], main[id] { scroll-margin-top: 80px; }
 .foot-meta { display: grid; gap: 8px; justify-items: end; }
 .foot-meta a { font-family: var(--label); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--lime); text-decoration: none; }
 .foot-meta a:hover { text-decoration: underline; }
+.foot-meta small a.quiet { font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; text-decoration: underline; text-decoration-color: rgba(255,255,255,.25); text-underline-offset: 3px; }
+.foot-meta small a.quiet:hover { color: var(--chalk); }
 @media (max-width: 600px) { .foot-meta { justify-items: start; } }
 .out .hint a { color: var(--lime); }
 
@@ -605,7 +607,7 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
       <form id="startForm" novalidate>
         <div class="row2">
           <label for="f-name">Your name<input id="f-name" name="name" autocomplete="name" placeholder="First and last name" required></label>
-          <label for="f-contact">Phone or email<span class="cm-row"><select id="f-cm" aria-label="Contact method"><option value="">Choose</option><option value="phone">Phone</option><option value="email">Email</option></select><input id="f-contact" name="contact" placeholder="Choose phone or email first" disabled></span><span class="cm-err" id="cm-err" hidden></span></label>
+          <label for="f-contact">Phone or email<span class="cm-row"><select id="f-cm" aria-label="Contact method"><option value="">Choose</option><option value="phone">Phone</option><option value="email">Email</option></select><input id="f-contact" name="contact" placeholder="Pick one first" disabled></span><span class="cm-err" id="cm-err" hidden></span></label>
         </div>
         <input type="text" name="_honey" id="f-honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
         <div class="row2">
@@ -650,7 +652,7 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
     <div class="sign">Just <span>start.</span></div>
     <div class="foot-meta">
       <a href="https://www.instagram.com/hasib.jahanmal/" target="_blank" rel="noopener">Instagram @hasib.jahanmal</a>
-      <small>© 2026 Hasib Jahanmal · Personal training &amp; nutrition · Sacramento, CA</small>
+      <small>© 2026 Hasib Jahanmal · Personal training &amp; nutrition · Sacramento, CA · <a class="quiet" href="https://www.coachhasib.com/questionnaire/">Client questionnaire</a></small>
     </div>
   </div>
 </footer>
@@ -683,9 +685,9 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
   var cm = document.getElementById('f-cm'), ci = document.getElementById('f-contact');
   cm.addEventListener('change', function () {
     var v = cm.value; ci.disabled = !v; document.getElementById('cm-err').hidden = true;
-    if (v === 'phone') { ci.type = 'tel'; ci.inputMode = 'tel'; ci.autocomplete = 'tel'; ci.placeholder = '(916) 555-1234'; }
-    else if (v === 'email') { ci.type = 'email'; ci.inputMode = 'email'; ci.autocomplete = 'email'; ci.placeholder = 'name@example.com'; }
-    else { ci.type = 'text'; ci.value = ''; ci.placeholder = 'Choose phone or email first'; }
+    if (v === 'phone') { ci.type = 'tel'; ci.inputMode = 'tel'; ci.autocomplete = 'tel'; ci.placeholder = '916 555 1234'; }
+    else if (v === 'email') { ci.type = 'email'; ci.inputMode = 'email'; ci.autocomplete = 'email'; ci.placeholder = 'you@email.com'; }
+    else { ci.type = 'text'; ci.value = ''; ci.placeholder = 'Pick one first'; }
     if (v) ci.focus();
   });
   ci.addEventListener('input', function () { document.getElementById('cm-err').hidden = true; });
