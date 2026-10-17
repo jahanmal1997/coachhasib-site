@@ -275,6 +275,10 @@ section[id], main[id] { scroll-margin-top: 80px; }
 .sent p { margin: 0; color: var(--chalk); font-size: 15.5px; }
 .sent .sent-title { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 26px; color: var(--lime); }
 #send-btn[disabled] { opacity: .7; cursor: default; }
+.cm-row { display: flex; gap: 8px; }
+.cm-row select { flex: 0 0 104px; }
+.cm-row input { flex: 1; min-width: 0; }
+.cm-err { display: block; color: #ff8a7a; font-size: 14px; font-weight: 400; text-transform: none; letter-spacing: 0; margin-top: 6px; }
 @media (max-width: 520px) { #startForm .row2 { grid-template-columns: 1fr; } }
 
 .send-error { margin: 0; color: #ff8a7a; font-size: 15px; }
@@ -601,7 +605,7 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
       <form id="startForm" novalidate>
         <div class="row2">
           <label for="f-name">Your name<input id="f-name" name="name" autocomplete="name" placeholder="First and last name" required></label>
-          <label for="f-contact">Phone or email<input id="f-contact" name="contact" autocomplete="tel" placeholder="So I can reply to you" required></label>
+          <label for="f-contact">Phone or email<span class="cm-row"><select id="f-cm" aria-label="Contact method"><option value="">Choose</option><option value="phone">Phone</option><option value="email">Email</option></select><input id="f-contact" name="contact" placeholder="Choose phone or email first" disabled></span><span class="cm-err" id="cm-err" hidden></span></label>
         </div>
         <input type="text" name="_honey" id="f-honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
         <div class="row2">
@@ -676,6 +680,15 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
   var sendError = document.getElementById('send-error');
   var sendBtn = document.getElementById('send-btn');
   var sent = document.getElementById('sent');
+  var cm = document.getElementById('f-cm'), ci = document.getElementById('f-contact');
+  cm.addEventListener('change', function () {
+    var v = cm.value; ci.disabled = !v; document.getElementById('cm-err').hidden = true;
+    if (v === 'phone') { ci.type = 'tel'; ci.inputMode = 'tel'; ci.autocomplete = 'tel'; ci.placeholder = '(916) 555-1234'; }
+    else if (v === 'email') { ci.type = 'email'; ci.inputMode = 'email'; ci.autocomplete = 'email'; ci.placeholder = 'name@example.com'; }
+    else { ci.type = 'text'; ci.value = ''; ci.placeholder = 'Choose phone or email first'; }
+    if (v) ci.focus();
+  });
+  ci.addEventListener('input', function () { document.getElementById('cm-err').hidden = true; });
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var f = form.elements;
@@ -683,8 +696,12 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
     var contact = f.contact.value.trim();
     if (!name) { f.name.focus(); f.name.setAttribute('aria-invalid', 'true'); f.name.placeholder = 'Add your name to continue'; return; }
     f.name.removeAttribute('aria-invalid');
-    if (!contact) { f.contact.focus(); f.contact.setAttribute('aria-invalid', 'true'); f.contact.placeholder = 'Add a phone or email so I can reply'; return; }
-    f.contact.removeAttribute('aria-invalid');
+    var method = cm.value, cmErr = document.getElementById('cm-err'), bad = '';
+    if (!method) bad = 'Choose Phone or Email first.';
+    else if (method === 'phone' && !(/^[0-9 ()+.\-]+$/.test(contact) && contact.replace(/\D/g, '').length >= 10 && contact.replace(/\D/g, '').length <= 15)) bad = 'Please enter a correct phone number with at least 10 digits, like (916) 555-1234';
+    else if (method === 'email' && !/^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$/.test(contact)) bad = 'Please enter a correct email address, like name@gmail.com';
+    if (bad) { cmErr.textContent = bad; cmErr.hidden = false; f.contact.setAttribute('aria-invalid', 'true'); (method ? f.contact : cm).focus(); return; }
+    cmErr.hidden = true; f.contact.removeAttribute('aria-invalid');
     if (f._honey.value) return;
     var lines = [
       'Hi Coach Hasib, my name is ' + name + '.',
@@ -704,7 +721,7 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
         _template: 'table',
         _captcha: 'false',
         Name: name,
-        'Phone or email': contact,
+        [method === 'email' ? 'email' : 'Phone']: contact,
         Package: f.pkg.value,
         'Main goal': f.goal.value,
         'Days they can train': f.days.value.trim() || '-',
