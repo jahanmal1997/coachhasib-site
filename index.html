@@ -203,9 +203,7 @@ tr:last-child td { border-bottom: 0; }
 .hero-photo, .ba img, .vip-photo, .reel-frame video { height: auto; }
 .hero-visual { position: relative; min-width: 0; }
 .hero-photo { display: block; width: 100%; max-width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 42%; border: 1px solid var(--line); background: var(--iron); }
-.hero-visual .logcard { position: absolute; right: -28px; bottom: -36px; width: min(280px, 70%); padding: 18px; box-shadow: 0 18px 40px rgba(0,0,0,.45); }
-@media (max-width: 1100px) { .hero-visual .logcard { right: 12px; } }
-@media (max-width: 860px) { .hero-visual .logcard { position: static; width: auto; margin-top: 16px; box-shadow: none; } }
+.hero-visual .logcard { position: static; width: auto; margin-top: 16px; padding: 18px; }
 .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
 .ba figure { margin: 0; position: relative; min-width: 0; }
 .ba img { display: block; width: 100%; max-width: 100%; aspect-ratio: 9 / 14; object-fit: cover; object-position: 50% 40%; background: var(--iron); }
