@@ -251,16 +251,24 @@ section[id], main[id] { scroll-margin-top: 80px; }
   body footer .foot-meta { justify-items: start; }
   .ticker-track { font-size: 20px; }
 }
+.cmp-cards { display: none; }
 @media (max-width: 600px) {
-  .tablewrap { border: 0; overflow: visible; }
-  table, tbody, tr, td { display: block; min-width: 0; width: 100%; }
-  thead { display: none; }
-  tr { border: 1px solid var(--line); margin-bottom: 12px; background: var(--iron); }
-  td { display: flex; justify-content: space-between; gap: 16px; padding: 10px 16px; font-size: 15px; }
-  td::before { content: attr(data-label); font-family: var(--label); text-transform: uppercase; letter-spacing: .08em; font-size: 12px; color: var(--dust); align-self: center; }
-  td.pk { font-size: 26px; border-bottom: 1px solid var(--line); }
-  td.pk::before { content: none; }
-  tr td:last-child { border-bottom: 0; }
+  .tablewrap, .fact-studio { display: none; }
+  .facts { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .fact .big { font-size: 36px; }
+  .fact p { font-size: 13px; }
+  .cmp-cards { display: grid; gap: 12px; margin-top: 28px; }
+  .cmp-card { border: 1px solid var(--line); background: var(--iron); padding: 16px; }
+  .cmp-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .cmp-name { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 24px; line-height: 1; }
+  .cmp-n { font-family: var(--label); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--dust); white-space: nowrap; }
+  .cmp-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+  .cmp-col { border: 1px solid var(--line); padding: 10px 12px; display: grid; gap: 4px; }
+  .cmp-col.mine { border-color: var(--lime); }
+  .cmp-lbl { font-family: var(--label); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--dust); }
+  .cmp-them { font-size: 17px; text-decoration: line-through; text-decoration-color: rgba(255,255,255,.35); color: var(--dust); font-variant-numeric: tabular-nums; }
+  .cmp-me { font-family: var(--display); font-weight: 900; font-size: 30px; line-height: 1; color: var(--lime); }
+  .cmp-save { margin-top: 12px; display: inline-block; background: var(--lime); color: var(--ink); font-family: var(--label); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: 13px; padding: 5px 10px; }
 }
 
 .sent { border: 1px solid var(--lime); background: color-mix(in srgb, var(--lime) 10%, transparent); padding: 16px 18px; display: grid; gap: 6px; }
@@ -514,7 +522,7 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
       <p class="lede">Most personal trainers in Sacramento charge $49 to $79 per session. Here's what the same number of sessions would cost elsewhere in town.</p>
       <div class="facts">
         <div class="fact"><div class="big">$49–79</div><p>Typical price per session from Sacramento trainers</p></div>
-        <div class="fact"><div class="big">$55–75</div><p>Per session at a private Sacramento studio, depending on how often you train</p></div>
+        <div class="fact fact-studio"><div class="big">$55–75</div><p>Per session at a private Sacramento studio, depending on how often you train</p></div>
         <div class="fact"><div class="big" style="color:var(--lime)">$37–50</div><p>What you pay per session with my packages</p></div>
       </div>
       <div class="tablewrap">
@@ -527,6 +535,13 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
             <tr><td data-label="Package" class="pk">Inner Circle</td><td data-label="Sessions / month">16</td><td data-label="Typical Sacramento cost">$784 – $1,264</td><td data-label="My price" class="mine">$699</td><td data-label="You save">$85 – $565</td></tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="cmp-cards">
+        <div class="cmp-card"><div class="cmp-top"><span class="cmp-name">Kickstart</span><span class="cmp-n">4 sessions / month</span></div><div class="cmp-vs"><div class="cmp-col"><span class="cmp-lbl">Other trainers</span><span class="cmp-them">$196 – $316</span></div><div class="cmp-col mine"><span class="cmp-lbl">With me</span><span class="cmp-me">$199</span></div></div><div class="cmp-save">Save up to $117</div></div>
+        <div class="cmp-card"><div class="cmp-top"><span class="cmp-name">Momentum</span><span class="cmp-n">8 sessions / month</span></div><div class="cmp-vs"><div class="cmp-col"><span class="cmp-lbl">Other trainers</span><span class="cmp-them">$392 – $632</span></div><div class="cmp-col mine"><span class="cmp-lbl">With me</span><span class="cmp-me">$299</span></div></div><div class="cmp-save">Save $93 – $333</div></div>
+        <div class="cmp-card"><div class="cmp-top"><span class="cmp-name">Transform</span><span class="cmp-n">12 sessions / month</span></div><div class="cmp-vs"><div class="cmp-col"><span class="cmp-lbl">Other trainers</span><span class="cmp-them">$588 – $948</span></div><div class="cmp-col mine"><span class="cmp-lbl">With me</span><span class="cmp-me">$449</span></div></div><div class="cmp-save">Save $139 – $499</div></div>
+        <div class="cmp-card"><div class="cmp-top"><span class="cmp-name">Inner Circle</span><span class="cmp-n">16 sessions / month</span></div><div class="cmp-vs"><div class="cmp-col"><span class="cmp-lbl">Other trainers</span><span class="cmp-them">$784 – $1,264</span></div><div class="cmp-col mine"><span class="cmp-lbl">With me</span><span class="cmp-me">$699</span></div></div><div class="cmp-save">Save $85 – $565</div></div>
       </div>
       <p class="fine">The Sacramento cost is the number of sessions times $49 to $79, based on local trainer listings from 2026. It covers sessions only. Meal plans, check-ins, and messaging usually cost extra elsewhere and are included in my packages.</p>
     </div>
