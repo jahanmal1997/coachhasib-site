@@ -265,6 +265,12 @@ section[id], main[id] { scroll-margin-top: 80px; }
   tr td:last-child { border-bottom: 0; }
 }
 
+.sent { border: 1px solid var(--lime); background: color-mix(in srgb, var(--lime) 10%, transparent); padding: 16px 18px; display: grid; gap: 6px; }
+.sent p { margin: 0; color: var(--chalk); font-size: 15.5px; }
+.sent .sent-title { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 26px; color: var(--lime); }
+#send-btn[disabled] { opacity: .7; cursor: default; }
+@media (max-width: 520px) { #startForm .row2 { grid-template-columns: 1fr; } }
+
 /* Contact */
 .contact { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 24px; }
 .contact span { font-family: var(--label); letter-spacing: .06em; color: var(--dust); font-size: 15px; }
@@ -566,7 +572,7 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
       <div>
         <p class="eyebrow">Get started</p>
         <h2>Your first rep starts here</h2>
-        <p class="lede">Fill this in and I'll get a message ready for you. Copy it and send it to me by text or Instagram DM. I'll reply with your questionnaire and a time for your first session.</p>
+        <p class="lede">Fill this in and tap send. It comes straight to me, and I'll reply within 24 hours with your questionnaire and a time for your first session.</p>
         <div class="contact">
           <a class="btn ghost" href="https://www.instagram.com/hasib.jahanmal/" target="_blank" rel="noopener">DM on Instagram</a>
           <span>@hasib.jahanmal · Text (916) 839-8119</span>
@@ -580,6 +586,10 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
       <form id="startForm" novalidate>
         <div class="row2">
           <label for="f-name">Your name<input id="f-name" name="name" autocomplete="name" placeholder="First and last name" required></label>
+          <label for="f-contact">Phone or email<input id="f-contact" name="contact" autocomplete="tel" placeholder="So I can reply to you" required></label>
+        </div>
+        <input type="text" name="_honey" id="f-honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+        <div class="row2">
           <label for="f-pkg">Package
             <select id="f-pkg" name="pkg">
               <option>Kickstart ($199/mo)</option>
@@ -590,23 +600,28 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
               <option>Single session ($40/hr)</option>
             </select>
           </label>
+          <label for="f-goal">Main goal
+            <select id="f-goal" name="goal">
+              <option>Build muscle and gain weight</option>
+              <option>Lose fat</option>
+              <option>Get stronger</option>
+              <option>Get healthier and more active</option>
+            </select>
+          </label>
         </div>
-        <label for="f-goal">Main goal
-          <select id="f-goal" name="goal">
-            <option>Build muscle and gain weight</option>
-            <option>Lose fat</option>
-            <option>Get stronger</option>
-            <option>Get healthier and more active</option>
-          </select>
-        </label>
         <label for="f-days">Days you can train
           <input id="f-days" name="days" placeholder="e.g. Mon, Wed, Sat evenings">
         </label>
         <label for="f-note">Anything I should know?
           <textarea id="f-note" name="note" placeholder="Injuries, allergies, schedule, questions"></textarea>
         </label>
-        <button class="btn" type="submit">Prepare my message</button>
+        <button class="btn" type="submit" id="send-btn">Send to Coach Hasib</button>
+        <div class="sent" id="sent" hidden role="status">
+          <p class="sent-title">Sent. Thank you!</p>
+          <p>I got your request and will reply within 24 hours with your questionnaire and a time for your first session.</p>
+        </div>
         <div class="out" id="out" hidden>
+          <p class="hint" id="out-note" style="color:var(--chalk)">The message couldn't be sent from here. Copy it and send it to me directly:</p>
           <pre id="msg"></pre>
           <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
             <button class="btn small" type="button" id="copy">Copy message</button>
@@ -654,12 +669,18 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
   var msg = document.getElementById('msg');
   var out = document.getElementById('out');
   var status = document.getElementById('status');
+  var sendBtn = document.getElementById('send-btn');
+  var sent = document.getElementById('sent');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var f = form.elements;
     var name = f.name.value.trim();
+    var contact = f.contact.value.trim();
     if (!name) { f.name.focus(); f.name.setAttribute('aria-invalid', 'true'); f.name.placeholder = 'Add your name to continue'; return; }
     f.name.removeAttribute('aria-invalid');
+    if (!contact) { f.contact.focus(); f.contact.setAttribute('aria-invalid', 'true'); f.contact.placeholder = 'Add a phone or email so I can reply'; return; }
+    f.contact.removeAttribute('aria-invalid');
+    if (f._honey.value) return;
     var lines = [
       'Hi Coach Hasib, my name is ' + name + '.',
       "I'd like to start the " + f.pkg.value + ' package.',
@@ -667,10 +688,27 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
     ];
     if (f.days.value.trim()) lines.push('I can train: ' + f.days.value.trim() + '.');
     if (f.note.value.trim()) lines.push('Notes: ' + f.note.value.trim());
-    lines.push('Please send me the questionnaire. Thanks!');
+    lines.push('Reach me at: ' + contact);
     msg.textContent = lines.join('\n');
-    status.textContent = '';
-    out.hidden = false;
+    out.hidden = true; sent.hidden = true; status.textContent = '';
+    sendBtn.disabled = true; sendBtn.textContent = 'Sending…';
+    fetch('https://formsubmit.co/ajax/coachhasib@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'New client request: ' + name + ' (' + f.pkg.value + ')',
+        _template: 'table',
+        _captcha: 'false',
+        Name: name,
+        'Phone or email': contact,
+        Package: f.pkg.value,
+        'Main goal': f.goal.value,
+        'Days they can train': f.days.value.trim() || '-',
+        Notes: f.note.value.trim() || '-'
+      })
+    }).then(function (r) { return r.json().then(function (d) { if (!r.ok || String(d.success) !== 'true') throw new Error(d.message || 'failed'); }); })
+      .then(function () { form.querySelectorAll('input:not([type=hidden]), textarea').forEach(function (el) { if (el.id !== 'f-honey') el.value = ''; }); sent.hidden = false; sendBtn.textContent = 'Sent'; })
+      .catch(function () { out.hidden = false; sendBtn.disabled = false; sendBtn.textContent = 'Try sending again'; });
   });
 
   document.getElementById('copy').addEventListener('click', function () {
