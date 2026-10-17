@@ -271,6 +271,8 @@ section[id], main[id] { scroll-margin-top: 80px; }
 #send-btn[disabled] { opacity: .7; cursor: default; }
 @media (max-width: 520px) { #startForm .row2 { grid-template-columns: 1fr; } }
 
+.send-error { margin: 0; color: #ff8a7a; font-size: 15px; }
+
 /* Contact */
 .contact { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 24px; }
 .contact span { font-family: var(--label); letter-spacing: .06em; color: var(--dust); font-size: 15px; }
@@ -620,15 +622,7 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
           <p class="sent-title">Sent. Thank you!</p>
           <p>I got your request and will reply within 24 hours with your questionnaire and a time for your first session.</p>
         </div>
-        <div class="out" id="out" hidden>
-          <p class="hint" id="out-note" style="color:var(--chalk)">The message couldn't be sent from here. Copy it and send it to me directly:</p>
-          <pre id="msg"></pre>
-          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-            <button class="btn small" type="button" id="copy">Copy message</button>
-            <span class="status" id="status" role="status"></span>
-          </div>
-          <p class="hint">Paste it into a text to (916) 839-8119 or a DM to <a href="https://www.instagram.com/hasib.jahanmal/" target="_blank" rel="noopener">@hasib.jahanmal</a> on Instagram.</p>
-        </div>
+        <p class="send-error" id="send-error" role="alert" hidden>Your message didn't go through. Please check your internet connection and tap Send again.</p>
       </form>
     </div>
   </section>
@@ -666,9 +660,7 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
   vid.addEventListener('play', setTog); vid.addEventListener('pause', setTog); setTog();
 
   var form = document.getElementById('startForm');
-  var msg = document.getElementById('msg');
-  var out = document.getElementById('out');
-  var status = document.getElementById('status');
+  var sendError = document.getElementById('send-error');
   var sendBtn = document.getElementById('send-btn');
   var sent = document.getElementById('sent');
   form.addEventListener('submit', function (e) {
@@ -689,8 +681,7 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
     if (f.days.value.trim()) lines.push('I can train: ' + f.days.value.trim() + '.');
     if (f.note.value.trim()) lines.push('Notes: ' + f.note.value.trim());
     lines.push('Reach me at: ' + contact);
-    msg.textContent = lines.join('\n');
-    out.hidden = true; sent.hidden = true; status.textContent = '';
+    sent.hidden = true; sendError.hidden = true;
     sendBtn.disabled = true; sendBtn.textContent = 'Sending…';
     fetch('https://formsubmit.co/ajax/coachhasib@gmail.com', {
       method: 'POST',
@@ -708,20 +699,9 @@ footer small { color: var(--dust); font-family: var(--label); letter-spacing: .0
       })
     }).then(function (r) { return r.json().then(function (d) { if (!r.ok || String(d.success) !== 'true') throw new Error(d.message || 'failed'); }); })
       .then(function () { form.querySelectorAll('input:not([type=hidden]), textarea').forEach(function (el) { if (el.id !== 'f-honey') el.value = ''; }); sent.hidden = false; sendBtn.textContent = 'Sent'; })
-      .catch(function () { out.hidden = false; sendBtn.disabled = false; sendBtn.textContent = 'Try sending again'; });
+      .catch(function () { sendError.hidden = false; sendBtn.disabled = false; sendBtn.textContent = 'Send to Coach Hasib'; });
   });
 
-  document.getElementById('copy').addEventListener('click', function () {
-    var text = msg.textContent;
-    function fallback() {
-      var r = document.createRange(); r.selectNodeContents(msg);
-      var s = getSelection(); s.removeAllRanges(); s.addRange(r);
-      status.textContent = 'Selected. Press Ctrl/Cmd + C to copy';
-    }
-    try {
-      navigator.clipboard.writeText(text).then(function () { status.textContent = 'Copied'; }, fallback);
-    } catch (err) { fallback(); }
-  });
 })();
 </script>
 
