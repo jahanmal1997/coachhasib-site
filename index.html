@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Personal training and nutrition coaching in Sacramento with Coach Hasib Jahanmal. From overweight to coach: packages for beginners to VIP.">
+<meta property="og:title" content="Coach Hasib | Personal Training in Sacramento">
+<meta property="og:description" content="I was where you are. Now I coach. Training and nutrition plans built for you.">
+<meta property="og:image" content="https://coachhasib.com/img/now-mirror.jpg">
+<meta property="og:url" content="https://coachhasib.com/">
+<style>body{margin:0}img,video{max-width:100%}[hidden]{display:none!important}</style>
+<title>Coach Hasib | Personal Training in Sacramento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap">
+<style>
+/* Layout: dark gym-floor bands; a training-log ledger runs through the page (sets × reps notation, plate weights). Deliberately single dark theme to match the coach's brand. */
+:root {
+  --ink: #0d0f0c;        /* black */
+  --iron: #1a1d19;       /* charcoal */
+  --plate: #262a24;      /* raised charcoal */
+  --chalk: #eef0e8;      /* text */
+  --dust: #a3a99a;       /* muted text */
+  --lime: #c6ff1a;       /* electric lime */
+  --line: #33382f;
+  --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --label: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body { background: var(--ink); color: var(--chalk); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+section { padding-block: 88px; }
+.band { background: var(--iron); border-block: 1px solid var(--line); }
+
+.eyebrow { font-family: var(--label); font-weight: 600; text-transform: uppercase; letter-spacing: .14em; font-size: 14px; color: var(--lime); margin: 0 0 14px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 900; text-transform: uppercase; line-height: .92; margin: 0; text-wrap: balance; letter-spacing: .005em; }
+h2 { font-size: clamp(44px, 7vw, 76px); }
+.lede { color: var(--dust); max-width: 60ch; margin: 18px 0 0; font-size: 18px; }
+
+/* Nav */
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--ink) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+.brand { font-family: var(--display); font-weight: 900; font-size: 24px; text-transform: uppercase; text-decoration: none; letter-spacing: .02em; }
+.brand span { color: var(--lime); }
+nav.links { display: flex; gap: 26px; font-family: var(--label); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; font-size: 15px; }
+nav.links a { text-decoration: none; color: var(--dust); }
+nav.links a:hover { color: var(--chalk); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--label); font-weight: 700; text-transform: uppercase; letter-spacing: .1em; font-size: 16px; padding: 14px 24px; border-radius: 2px; border: 2px solid var(--lime); background: var(--lime); color: var(--ink); text-decoration: none; cursor: pointer; transition: transform .15s ease, background .15s ease, color .15s ease; }
+.btn:hover { transform: translateY(-2px); }
+.btn.ghost { background: transparent; color: var(--lime); }
+.btn.small { padding: 9px 16px; font-size: 14px; }
+@media (max-width: 720px) {
+  header.top .wrap { flex-wrap: wrap; height: auto; padding-block: 10px 0; row-gap: 6px; }
+  nav.links { order: 3; width: 100%; overflow-x: auto; gap: 22px; padding-block: 8px 12px; font-size: 14px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  nav.links::-webkit-scrollbar { display: none; }
+  nav.links a { white-space: nowrap; padding-block: 4px; }
+  .brand { font-size: 22px; }
+}
+
+/* Hero */
+.hero { padding-block: 64px 88px; position: relative; overflow: hidden; }
+.hero-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 48px; align-items: center; }
+.hero h1 { font-size: clamp(64px, 12vw, 150px); }
+.hero h1 em { font-style: normal; color: var(--lime); display: block; }
+.hero .lede { color: var(--chalk); opacity: .82; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.logcard { background: var(--iron); border: 1px solid var(--line); padding: 24px; font-family: var(--label); min-width: 0; }
+.logcard .head { display: flex; justify-content: space-between; text-transform: uppercase; letter-spacing: .12em; font-size: 13px; color: var(--dust); border-bottom: 1px dashed var(--line); padding-bottom: 10px; margin-bottom: 8px; }
+.logrow { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 18px; font-variant-numeric: tabular-nums; }
+.logrow:last-child { border-bottom: 0; }
+.logrow b { color: var(--lime); font-weight: 600; }
+.logcard .note { font-family: var(--body); font-size: 14px; color: var(--dust); margin: 14px 0 0; }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+
+/* Ticker */
+.ticker { background: var(--lime); color: var(--ink); overflow: hidden; white-space: nowrap; border-block: 1px solid var(--lime); }
+.ticker-track { display: inline-flex; gap: 40px; padding-block: 12px; font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 26px; animation: slide 38s linear infinite; }
+.ticker-track span::after { content: "/"; margin-left: 40px; opacity: .4; }
+@keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* Story */
+.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.story-grid p { margin: 0 0 18px; max-width: 62ch; }
+.story-grid > div { min-width: 0; }
+blockquote { margin: 0; padding: 32px; border-left: 4px solid var(--lime); background: var(--plate); }
+blockquote p { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(28px, 3.6vw, 40px); line-height: 1.02; margin: 0 0 18px !important; }
+blockquote cite { font-style: normal; font-family: var(--label); text-transform: uppercase; letter-spacing: .14em; color: var(--lime); font-size: 14px; }
+.creds { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.chip { font-family: var(--label); text-transform: uppercase; letter-spacing: .08em; font-size: 14px; border: 1px solid var(--line); padding: 6px 12px; color: var(--chalk); }
+@media (max-width: 860px) { .story-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+/* Packages */
+.pkg-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 44px; }
+.rate { font-family: var(--label); text-transform: uppercase; letter-spacing: .1em; color: var(--dust); font-size: 15px; }
+.rate b { color: var(--chalk); font-size: 22px; letter-spacing: .02em; }
+.pkgs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.pkg { background: var(--iron); border: 1px solid var(--line); padding: 26px 22px; display: flex; flex-direction: column; gap: 18px; min-width: 0; position: relative; }
+.pkg.vip { background: var(--lime); color: var(--ink); border-color: var(--lime); }
+.pkg.vip .tier, .pkg.vip .per, .pkg.vip li::before { color: var(--ink); }
+.pkg.vip .feat li { border-color: color-mix(in srgb, var(--ink) 20%, transparent); }
+.pkg.vip .btn { background: var(--ink); color: var(--lime); border-color: var(--ink); }
+.tier { font-family: var(--label); font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: 13px; color: var(--lime); display: flex; justify-content: space-between; }
+.pkg h3 { font-size: 42px; }
+.plates { display: flex; gap: 4px; height: 18px; align-items: center; }
+.plates i { display: block; width: 6px; background: currentColor; border-radius: 1px; opacity: .85; }
+.price { font-family: var(--display); font-weight: 900; font-size: 54px; line-height: 1; font-variant-numeric: tabular-nums; }
+.per { font-family: var(--label); text-transform: uppercase; letter-spacing: .1em; font-size: 14px; color: var(--dust); margin-left: 4px; font-weight: 600; }
+.dose { font-family: var(--label); font-weight: 600; font-size: 17px; letter-spacing: .04em; }
+.feat { list-style: none; margin: 0; padding: 0; font-size: 15.5px; flex: 1; }
+.feat li { padding: 9px 0 9px 22px; border-top: 1px solid var(--line); position: relative; }
+.feat li::before { content: "+"; position: absolute; left: 0; color: var(--lime); font-weight: 700; }
+.best { font-size: 14.5px; opacity: .85; margin: 0; }
+.popular { position: absolute; top: -12px; right: 16px; background: var(--chalk); color: var(--ink); font-family: var(--label); font-weight: 700; text-transform: uppercase; letter-spacing: .1em; font-size: 12px; padding: 3px 10px; }
+@media (max-width: 1020px) { .pkgs { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .pkgs { grid-template-columns: 1fr; } }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 44px; border-top: 1px solid var(--line); }
+.step { padding: 26px 24px 8px 0; min-width: 0; }
+.step + .step { padding-left: 24px; border-left: 1px solid var(--line); }
+.step .n { font-family: var(--display); font-weight: 900; font-size: 64px; color: var(--lime); line-height: 1; }
+.step h3 { font-size: 28px; margin: 12px 0 8px; }
+.step p { color: var(--dust); margin: 0; font-size: 15.5px; }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr 1fr; } .step:nth-child(3) { border-left: 0; padding-left: 0; } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } .step + .step { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); } }
+
+/* FAQ */
+.faq { margin-top: 36px; border-top: 1px solid var(--line); }
+details { border-bottom: 1px solid var(--line); }
+summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; padding: 20px 0; font-family: var(--label); font-weight: 600; font-size: 21px; letter-spacing: .02em; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--lime); font-size: 26px; line-height: 1; transition: transform .2s ease; }
+details[open] summary::after { transform: rotate(45deg); }
+details p { margin: 0 0 22px; color: var(--dust); max-width: 68ch; }
+
+/* Start form */
+.start-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
+.start-grid > * { min-width: 0; }
+form { display: grid; gap: 16px; background: var(--iron); border: 1px solid var(--line); padding: 28px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 520px) { .row2 { grid-template-columns: 1fr; } }
+label { display: grid; gap: 6px; font-family: var(--label); text-transform: uppercase; letter-spacing: .1em; font-size: 13px; color: var(--dust); font-weight: 600; }
+input, select, textarea { font: inherit; font-family: var(--body); text-transform: none; letter-spacing: normal; font-size: 16px; color: var(--chalk); background: var(--ink); border: 1px solid var(--line); border-radius: 2px; padding: 12px; width: 100%; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--lime); }
+textarea { min-height: 84px; resize: vertical; }
+.out { display: grid; gap: 12px; }
+.out pre { white-space: pre-wrap; word-break: break-word; margin: 0; background: var(--ink); border: 1px dashed var(--lime); padding: 16px; font-family: var(--body); font-size: 15px; color: var(--chalk); }
+.out .hint { font-size: 14px; color: var(--dust); margin: 0; }
+.status { font-family: var(--label); text-transform: uppercase; letter-spacing: .1em; font-size: 13px; color: var(--lime); min-height: 1em; }
+@media (max-width: 860px) { .start-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+/* Online strip */
+.online { margin-top: 16px; display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; border: 1px dashed var(--lime); padding: 22px 24px; }
+.online > * { min-width: 0; }
+.online h3 { font-size: 34px; }
+.online p { margin: 0; color: var(--dust); font-size: 15.5px; }
+.online .price { font-size: 44px; }
+@media (max-width: 820px) { .online { grid-template-columns: 1fr; gap: 12px; } }
+
+/* VIP */
+.vip-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: start; margin-top: 40px; }
+.vip-grid > * { min-width: 0; }
+.vip-price { display: flex; align-items: baseline; gap: 6px; margin: 18px 0 6px; }
+.vip-price .price { font-size: 72px; color: var(--lime); }
+.vip-list { list-style: none; margin: 24px 0 28px; padding: 0; display: grid; gap: 0; }
+.vip-list li { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+.vip-list b { font-family: var(--label); text-transform: uppercase; letter-spacing: .1em; font-size: 14px; color: var(--lime); font-weight: 700; padding-top: 2px; }
+.vip-list span { font-size: 15.5px; }
+@media (max-width: 520px) { .vip-list li { grid-template-columns: 1fr; gap: 4px; } }
+.week { background: var(--iron); border: 1px solid var(--line); padding: 24px; }
+.week .head { display: flex; justify-content: space-between; font-family: var(--label); text-transform: uppercase; letter-spacing: .12em; font-size: 13px; color: var(--dust); border-bottom: 1px dashed var(--line); padding-bottom: 10px; }
+.day { display: grid; grid-template-columns: 52px 1fr auto; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.day:last-child { border-bottom: 0; }
+.day .d { font-family: var(--display); font-weight: 900; font-size: 24px; text-transform: uppercase; }
+.day .what { font-size: 15px; min-width: 0; }
+.tag { font-family: var(--label); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; padding: 3px 8px; border: 1px solid var(--line); color: var(--dust); white-space: nowrap; }
+.tag.train { background: var(--lime); color: var(--ink); border-color: var(--lime); }
+
+/* Compare */
+.tablewrap { overflow-x: auto; margin-top: 36px; border: 1px solid var(--line); }
+table { width: 100%; border-collapse: collapse; min-width: 640px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--label); text-transform: uppercase; letter-spacing: .1em; font-size: 13px; color: var(--dust); font-weight: 600; background: var(--iron); }
+td { font-size: 16px; }
+td.pk { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 24px; }
+td.mine { color: var(--lime); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+.fine { color: var(--dust); font-size: 14px; margin: 14px 0 0; max-width: 80ch; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
+.fact { border-top: 2px solid var(--lime); padding-top: 14px; min-width: 0; }
+.fact .big { font-family: var(--display); font-weight: 900; font-size: 48px; line-height: 1; }
+.fact p { margin: 8px 0 0; color: var(--dust); font-size: 15px; }
+@media (max-width: 720px) { .facts { grid-template-columns: 1fr; } }
+
+/* Photos */
+.hero-photo, .ba img, .vip-photo, .reel-frame video { height: auto; }
+.hero-visual { position: relative; min-width: 0; }
+.hero-photo { display: block; width: 100%; max-width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 42%; border: 1px solid var(--line); background: var(--iron); }
+.hero-visual .logcard { position: absolute; right: -28px; bottom: -36px; width: min(280px, 70%); padding: 18px; box-shadow: 0 18px 40px rgba(0,0,0,.45); }
+@media (max-width: 1100px) { .hero-visual .logcard { right: 12px; } }
+@media (max-width: 860px) { .hero-visual .logcard { position: static; width: auto; margin-top: 16px; box-shadow: none; } }
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.ba figure { margin: 0; position: relative; min-width: 0; }
+.ba img { display: block; width: 100%; max-width: 100%; aspect-ratio: 9 / 14; object-fit: cover; object-position: 50% 40%; background: var(--iron); }
+.ba figcaption { position: absolute; top: 10px; left: 10px; font-family: var(--label); font-weight: 700; text-transform: uppercase; letter-spacing: .12em; font-size: 13px; padding: 4px 10px; }
+.tag-before { background: var(--ink); color: var(--chalk); border: 1px solid var(--line); }
+.tag-now { background: var(--lime); color: var(--ink); }
+
+.vip-side { display: grid; gap: 16px; min-width: 0; }
+.vip-photo { display: block; width: 100%; max-width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 30%; border: 1px solid var(--line); background: var(--iron); }
+
+/* Reel */
+.reel-sec { padding-block: 72px; border-top: 1px solid var(--line); }
+.reel-grid { display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: 56px; align-items: center; }
+.reel-grid > * { min-width: 0; }
+.reel-frame { position: relative; }
+.reel-frame video { display: block; width: 100%; max-width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: var(--iron); border: 1px solid var(--line); }
+.reel-toggle { position: absolute; right: 10px; bottom: 10px; font-family: var(--label); font-weight: 700; text-transform: uppercase; letter-spacing: .1em; font-size: 12px; padding: 6px 12px; background: color-mix(in srgb, var(--ink) 75%, transparent); color: var(--chalk); border: 1px solid var(--line); border-radius: 2px; cursor: pointer; }
+@media (max-width: 760px) { .reel-grid { grid-template-columns: 1fr; gap: 28px; } .reel-frame { max-width: 360px; } }
+
+/* Phone layout */
+section[id], main[id] { scroll-margin-top: 80px; }
+@media (max-width: 860px) {
+  .vip-grid { grid-template-columns: 1fr; gap: 36px; }
+  .reel-frame { margin-inline: auto; }
+}
+@media (max-width: 720px) {
+  section[id], main[id] { scroll-margin-top: 112px; }
+  section { padding-block: 60px; }
+  .hero { padding-block: 36px 56px; }
+  .hero-grid { gap: 32px; }
+  .hero-cta .btn { flex: 1 1 auto; }
+  .lede { font-size: 17px; }
+  .story-grid, .start-grid { gap: 32px; }
+  blockquote { padding: 22px; }
+  .pkg-head { margin-bottom: 28px; }
+  .vip-price .price { font-size: 60px; }
+  .week { padding: 18px; }
+  .day { grid-template-columns: 46px 1fr; row-gap: 6px; }
+  .day .tag { grid-column: 2; justify-self: start; }
+  .facts { gap: 20px; }
+  .reel-sec { padding-block: 56px; }
+  form { padding: 20px; }
+  .online { padding: 20px; }
+  body footer .wrap { flex-direction: column; align-items: flex-start; }
+  body footer .foot-meta { justify-items: start; }
+  .ticker-track { font-size: 20px; }
+}
+@media (max-width: 600px) {
+  .tablewrap { border: 0; overflow: visible; }
+  table, tbody, tr, td { display: block; min-width: 0; width: 100%; }
+  thead { display: none; }
+  tr { border: 1px solid var(--line); margin-bottom: 12px; background: var(--iron); }
+  td { display: flex; justify-content: space-between; gap: 16px; padding: 10px 16px; font-size: 15px; }
+  td::before { content: attr(data-label); font-family: var(--label); text-transform: uppercase; letter-spacing: .08em; font-size: 12px; color: var(--dust); align-self: center; }
+  td.pk { font-size: 26px; border-bottom: 1px solid var(--line); }
+  td.pk::before { content: none; }
+  tr td:last-child { border-bottom: 0; }
+}
+
+/* Contact */
+.contact { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 24px; }
+.contact span { font-family: var(--label); letter-spacing: .06em; color: var(--dust); font-size: 15px; }
+.foot-meta { display: grid; gap: 8px; justify-items: end; }
+.foot-meta a { font-family: var(--label); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--lime); text-decoration: none; }
+.foot-meta a:hover { text-decoration: underline; }
+@media (max-width: 600px) { .foot-meta { justify-items: start; } }
+.out .hint a { color: var(--lime); }
+
+/* Payment */
+.pay { margin-top: 28px; border: 1px solid var(--line); border-left: 4px solid var(--lime); background: var(--iron); padding: 20px 22px; display: grid; gap: 8px; max-width: 460px; }
+.pay p { margin: 0; color: var(--dust); font-size: 15.5px; }
+.pay .pay-num { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 30px; color: var(--chalk); line-height: 1.05; }
+.pay .pay-num span { color: var(--lime); font-variant-numeric: tabular-nums; user-select: all; }
+
+footer { padding-block: 48px; border-top: 1px solid var(--line); }
+footer .wrap { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+.sign { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(40px, 8vw, 88px); line-height: .9; }
+.sign span { color: var(--lime); }
+footer small { color: var(--dust); font-family: var(--label); letter-spacing: .08em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+
+<a href="#packages" class="btn small" style="position:absolute;left:-9999px" onfocus="this.style.left='16px'" onblur="this.style.left='-9999px'">Skip to packages</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Hasib <span>Jahanmal</span></a>
+    <nav class="links" aria-label="Main">
+      <a href="#story">My story</a>
+      <a href="#packages">Packages</a>
+      <a href="#vip">VIP</a>
+      <a href="#compare">Compare</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn small" href="#start">Start now</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Personal training · Nutrition coaching · Sacramento, CA</p>
+        <h1>I was where you are. <em>Now I coach.</em></h1>
+        <p class="lede">I used to be overweight. I know what it feels like to start from zero, and I know what it takes to change. I'll build your training and your meals around your body, your goals, and your schedule, then stay with you for every small win.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#packages">See packages</a>
+          <a class="btn ghost" href="#story">Read my story</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+      <img class="hero-photo" src="img/now-mirror.jpg" alt="Coach Hasib Jahanmal today" width="788" height="1400">
+      <aside class="logcard" aria-label="A typical first session">
+        <div class="head"><span>Session 01 · Full body</span><span>60 min</span></div>
+        <div class="logrow"><span>Goblet squat</span><b>3 × 10</b></div>
+        <div class="logrow"><span>Dumbbell bench press</span><b>3 × 10</b></div>
+        <div class="logrow"><span>Seated cable row</span><b>3 × 12</b></div>
+        <div class="logrow"><span>Romanian deadlift</span><b>3 × 10</b></div>
+        <div class="logrow"><span>Plank</span><b>3 × 40s</b></div>
+        <p class="note">Every client starts with a full-body session so I can see how you move before we build your plan.</p>
+      </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Build muscle</span><span>Lose fat</span><span>Gain weight</span><span>Eat right</span><span>Show up</span><span>Stay consistent</span>
+      <span>Build muscle</span><span>Lose fat</span><span>Gain weight</span><span>Eat right</span><span>Show up</span><span>Stay consistent</span>
+    </div>
+  </div>
+
+  <section id="story">
+    <div class="wrap story-grid">
+      <div>
+        <p class="eyebrow">My story</p>
+        <h2>From overweight to coach</h2>
+        <p class="lede" style="margin-bottom:28px">I didn't start fit. I started tired, unsure, and heavier than I wanted to be.</p>
+        <p>I remember looking at old photos of myself and not liking what I saw. Nobody handed me a perfect plan. I learned by training, eating better, getting it wrong, and showing up again the next day.</p>
+        <p>That's why I coach the way I do. I don't care where you start. Thin and trying to gain muscle, or carrying extra weight and ready to lose it, the process is the same: a plan made for you, food you can actually stick to, and someone in your corner who checks in.</p>
+        <p>Every program starts with a short questionnaire about your health, goals, activity, and diet, plus front, back, and side photos. From there I write your workouts and your nutrition plan, and we adjust as you progress.</p>
+        <div class="creds">
+          <span class="chip">Strength training</span><span class="chip">Muscle &amp; weight gain</span><span class="chip">Fat loss</span><span class="chip">Meal planning</span><span class="chip">Beginners welcome</span>
+        </div>
+      </div>
+      <div>
+        <div class="ba" aria-label="Before and now">
+          <figure><img src="img/before-front-original.jpg" alt="Hasib before training" width="675" height="1200" loading="lazy"><figcaption class="tag-before">Before</figcaption></figure>
+          <figure><img src="img/now-lake-crop.jpg" alt="Hasib now" width="710" height="1100" loading="lazy"><figcaption class="tag-now">Now</figcaption></figure>
+        </div>
+        <blockquote>
+          <p>I was once the person in the before photo. Every rep I do now started with one decision to begin. Make that decision today, and I'll be with you for the rest.</p>
+          <cite>Hasib Jahanmal, your coach</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="reel" class="reel-sec">
+    <div class="wrap reel-grid">
+      <div class="reel-frame">
+        <video id="reel-video" src="coach-reel.mp4" poster="img/now-mirror.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Hasib training, from before to now"></video>
+        <button type="button" class="reel-toggle" id="reel-toggle" aria-label="Pause video">Pause</button>
+      </div>
+      <div>
+        <p class="eyebrow">In the gym</p>
+        <h2>The work behind the change</h2>
+        <p class="lede">No shortcuts. Heavy sets, clean form, and showing up week after week. This is the same training I'll teach you, adjusted to where you are today.</p>
+        <a class="btn" href="#packages" style="margin-top:28px">Start your plan</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages" class="band">
+    <div class="wrap">
+      <div class="pkg-head">
+        <div>
+          <p class="eyebrow">Coaching packages</p>
+          <h2>Pick your program</h2>
+          <p class="lede">Four levels. Every one includes a personal plan built from your questionnaire. Move up whenever you're ready.</p>
+        </div>
+        <p class="rate">Single session<br><b>$40 / hour</b></p>
+      </div>
+
+      <div class="pkgs">
+        <article class="pkg">
+          <div class="tier"><span>Level 1 · Basic</span><span class="plates" aria-hidden="true"><i style="height:10px"></i></span></div>
+          <h3>Kickstart</h3>
+          <div><span class="price">$199</span><span class="per">/ month</span></div>
+          <div class="dose">4 × 60 min sessions</div>
+          <ul class="feat">
+            <li>Intake questionnaire and photo check-in</li>
+            <li>Full-body beginner program</li>
+            <li>Simple eating guide with a daily protein target</li>
+            <li>Form coaching on the key lifts</li>
+          </ul>
+          <p class="best">For first-timers who want to learn the basics and build the habit.</p>
+          <button class="btn ghost" type="button" data-pick="Kickstart">Choose Kickstart</button>
+        </article>
+
+        <article class="pkg">
+          <div class="tier"><span>Level 2 · Intermediate</span><span class="plates" aria-hidden="true"><i style="height:10px"></i><i style="height:14px"></i></span></div>
+          <h3>Momentum</h3>
+          <div><span class="price">$299</span><span class="per">/ month</span></div>
+          <div class="dose">8 × 60 min sessions</div>
+          <ul class="feat">
+            <li>Everything in Kickstart</li>
+            <li>Custom split for muscle gain or fat loss</li>
+            <li>Personal meal plan with calories and macros</li>
+            <li>Biweekly measurements and progress photos</li>
+          </ul>
+          <p class="best">For people training twice a week who want visible results.</p>
+          <button class="btn ghost" type="button" data-pick="Momentum">Choose Momentum</button>
+        </article>
+
+        <article class="pkg">
+          <span class="popular">Most popular</span>
+          <div class="tier"><span>Level 3 · Advanced</span><span class="plates" aria-hidden="true"><i style="height:10px"></i><i style="height:14px"></i><i style="height:18px"></i></span></div>
+          <h3>Transform</h3>
+          <div><span class="price">$449</span><span class="per">/ month</span></div>
+          <div class="dose">12 × 60 min sessions</div>
+          <ul class="feat">
+            <li>Everything in Momentum</li>
+            <li>Progressive overload plan, updated every 4 weeks</li>
+            <li>Weekly check-ins and meal plan adjustments</li>
+            <li>Home workouts for days off</li>
+          </ul>
+          <p class="best">For a serious body change in 12 weeks.</p>
+          <button class="btn" type="button" data-pick="Transform">Choose Transform</button>
+        </article>
+
+        <article class="pkg vip">
+          <div class="tier"><span>Level 4 · VIP</span><span class="plates" aria-hidden="true"><i style="height:10px"></i><i style="height:14px"></i><i style="height:18px"></i><i style="height:18px"></i></span></div>
+          <h3>Inner Circle</h3>
+          <div><span class="price">$699</span><span class="per">/ month</span></div>
+          <div class="dose">16 × 60 min sessions</div>
+          <ul class="feat">
+            <li>Everything in Transform</li>
+            <li>Direct message access to me, 7 days a week</li>
+            <li>Meal plan rebuilt every 2 weeks</li>
+            <li>Monthly 1-on-1 goal review</li>
+          </ul>
+          <p class="best">For people who want full accountability, every day.</p>
+          <a class="btn" href="#vip">See the VIP plan</a>
+        </article>
+      </div>
+
+      <div class="online">
+        <div><div class="tier"><span>One-time · Train on your own</span></div><h3>Custom Plan</h3></div>
+        <p>Fill in my questionnaire and send your photos. I'll write you a 4-week workout plan and a meal plan with calories and macros, made for your body and goal. There are no sessions or check-ins; you follow it on your own. Need a new plan after 4 weeks? It's $49.</p>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><div><span class="price">$99</span><span class="per">one time</span></div><button class="btn ghost small" type="button" data-pick="Custom Plan">Choose</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="vip">
+    <div class="wrap">
+      <p class="eyebrow">Level 4 · VIP</p>
+      <h2>The Inner Circle plan</h2>
+      <p class="lede">My most complete program. You train with me four times a week, and I'm with you between sessions too: your meals, your sleep, your questions, every day. Spots are limited because I keep this group small.</p>
+      <div class="vip-grid">
+        <div>
+          <div class="vip-price"><span class="price">$699</span><span class="per">/ month</span></div>
+          <p class="fine" style="margin:0">16 private sessions a month. About $44 per session, with everything below included.</p>
+          <ul class="vip-list">
+            <li><b>Training</b><span>4 × 60 min private sessions every week, programmed for your goal and updated every 4 weeks.</span></li>
+            <li><b>Nutrition</b><span>A full meal plan with calories and macros, rebuilt every 2 weeks as your body changes.</span></li>
+            <li><b>Daily support</b><span>Message me 7 days a week. Send meal photos, ask questions, and get answers the same day.</span></li>
+            <li><b>Meal prep</b><span>A weekly grocery list and a simple prep routine so you're never guessing what to eat.</span></li>
+            <li><b>Progress</b><span>Monthly measurements, weigh-in, and front, back, and side photos compared side by side.</span></li>
+            <li><b>Goal review</b><span>A 30 min talk with me every month to review results and set the next target.</span></li>
+            <li><b>Days off</b><span>Home and travel workouts so a trip or a busy week doesn't stop your progress.</span></li>
+            <li><b>Booking</b><span>First pick of session times and flexible rescheduling with 12 hours' notice.</span></li>
+          </ul>
+          <button class="btn" type="button" data-pick="Inner Circle">Apply for Inner Circle</button>
+        </div>
+        <div class="vip-side">
+        <img class="vip-photo" src="img/now-gym.jpg" alt="Hasib at the gym" width="788" height="1400" loading="lazy">
+        <aside class="week" aria-label="A sample VIP week">
+          <div class="head"><span>A sample VIP week</span><span>Muscle gain</span></div>
+          <div class="day"><span class="d">Mon</span><span class="what">Upper body: push and pull</span><span class="tag train">Session</span></div>
+          <div class="day"><span class="d">Tue</span><span class="what">Lower body: squat and hinge</span><span class="tag train">Session</span></div>
+          <div class="day"><span class="d">Wed</span><span class="what">Rest, 8k steps, meal photo check-in</span><span class="tag">Check-in</span></div>
+          <div class="day"><span class="d">Thu</span><span class="what">Upper body: volume day</span><span class="tag train">Session</span></div>
+          <div class="day"><span class="d">Fri</span><span class="what">Lower body and core</span><span class="tag train">Session</span></div>
+          <div class="day"><span class="d">Sat</span><span class="what">Home mobility, 20 min</span><span class="tag">At home</span></div>
+          <div class="day"><span class="d">Sun</span><span class="what">Weigh-in, grocery list for the week</span><span class="tag">Prep</span></div>
+        </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="compare" class="band">
+    <div class="wrap">
+      <p class="eyebrow">Compare</p>
+      <h2>Others vs. mine</h2>
+      <p class="lede">Most personal trainers in Sacramento charge $49 to $79 per session. Here's what the same number of sessions would cost elsewhere in town.</p>
+      <div class="facts">
+        <div class="fact"><div class="big">$49–79</div><p>Typical price per session from Sacramento trainers</p></div>
+        <div class="fact"><div class="big">$55–75</div><p>Per session at a private Sacramento studio, depending on how often you train</p></div>
+        <div class="fact"><div class="big" style="color:var(--lime)">$37–50</div><p>What you pay per session with my packages</p></div>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Package</th><th>Sessions / month</th><th>Typical Sacramento cost</th><th>My price</th><th>You save</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Package" class="pk">Kickstart</td><td data-label="Sessions / month">4</td><td data-label="Typical Sacramento cost">$196 – $316</td><td data-label="My price" class="mine">$199</td><td data-label="You save">Up to $117</td></tr>
+            <tr><td data-label="Package" class="pk">Momentum</td><td data-label="Sessions / month">8</td><td data-label="Typical Sacramento cost">$392 – $632</td><td data-label="My price" class="mine">$299</td><td data-label="You save">$93 – $333</td></tr>
+            <tr><td data-label="Package" class="pk">Transform</td><td data-label="Sessions / month">12</td><td data-label="Typical Sacramento cost">$588 – $948</td><td data-label="My price" class="mine">$449</td><td data-label="You save">$139 – $499</td></tr>
+            <tr><td data-label="Package" class="pk">Inner Circle</td><td data-label="Sessions / month">16</td><td data-label="Typical Sacramento cost">$784 – $1,264</td><td data-label="My price" class="mine">$699</td><td data-label="You save">$85 – $565</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">The Sacramento cost is the number of sessions times $49 to $79, based on local trainer listings from 2026. It covers sessions only. Meal plans, check-ins, and messaging usually cost extra elsewhere and are included in my packages.</p>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2>Four steps to start</h2>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Choose a package</h3><p>Pick the level that fits your goal and how often you can train.</p></div>
+        <div class="step"><div class="n">2</div><h3>Fill the questionnaire</h3><p>I'll send you a short form about your health, allergies, goals, and diet, plus 4 photos.</p></div>
+        <div class="step"><div class="n">3</div><h3>First session</h3><p>A full-body session so I can see your strength, mobility, and form.</p></div>
+        <div class="step"><div class="n">4</div><h3>Get your plan</h3><p>Your workout and nutrition plan, then check-ins as we track progress.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <p class="eyebrow">Questions</p>
+      <h2>Before you start</h2>
+      <div class="faq">
+        <details><summary>I've never trained before. Is that okay?</summary><p>Yes. Most of my clients start as beginners. Kickstart is built for that: we learn the movements first, then add weight.</p></details>
+        <details><summary>I'm thin and want to gain weight. Can you help?</summary><p>Yes. Gaining muscle takes enough calories, enough protein, and steady strength training. Your meal plan will set daily targets for all three.</p></details>
+        <details><summary>Do I need to follow a strict diet?</summary><p>No. Your plan is built around foods you already like and can afford. We adjust it as you go.</p></details>
+        <details><summary>Can I change packages later?</summary><p>Yes. You can move up or down at the start of any month.</p></details>
+        <details><summary>What if I have an injury, condition, or allergy?</summary><p>Tell me in the questionnaire. I'll plan around it, and if something needs a doctor's clearance first, I'll ask for that before we start.</p></details>
+        <details><summary>I want to lose weight, not gain it. Is this for me?</summary><p>Yes. The process is the same: a training plan built for you and a meal plan with the right calories and protein. For fat loss, your calories are set a little below what your body burns so you lose fat and keep your muscle.</p></details>
+        <details><summary>How long is each session?</summary><p>Every session is 60 minutes, including a warm-up, the main workout, and a short cool-down.</p></details>
+        <details><summary>Where do we train?</summary><p>In person in Sacramento. I'll confirm the gym and time when we book your first session.</p></details>
+        <details><summary>What should I bring?</summary><p>Comfortable workout clothes, training shoes, a water bottle, and a small towel. Eat a light meal or snack 1 to 2 hours before we start.</p></details>
+        <details><summary>How soon will I see results?</summary><p>Most clients feel stronger and have more energy within 2 to 4 weeks. Visible changes in your body usually show after 8 to 12 weeks of training and eating to plan. Consistency matters more than anything else.</p></details>
+        <details><summary>What if I need to miss a session?</summary><p>Message me at least 12 hours before and we'll move it to another day that week.</p></details>
+        <details><summary>How do I pay?</summary><p>By Zelle to (916) 839-8119 or in cash. Monthly packages are paid at the start of the month, before your first session.</p></details>
+        <details><summary>Can I train with you if I'm not in Sacramento?</summary><p>Yes. Choose the Custom Plan: a one-time $99 for a 4-week workout plan and meal plan made for you, which you follow on your own.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="start">
+    <div class="wrap start-grid">
+      <div>
+        <p class="eyebrow">Get started</p>
+        <h2>Your first rep starts here</h2>
+        <p class="lede">Fill this in and I'll get a message ready for you. Copy it and send it to me by text or Instagram DM. I'll reply with your questionnaire and a time for your first session.</p>
+        <div class="contact">
+          <a class="btn ghost" href="https://www.instagram.com/hasib.jahanmal/" target="_blank" rel="noopener">DM on Instagram</a>
+          <span>@hasib.jahanmal · Text (916) 839-8119</span>
+        </div>
+        <div class="pay">
+          <p class="eyebrow" style="margin:0">How to pay</p>
+          <p class="pay-num">Zelle <span>(916) 839-8119</span></p>
+          <p>Or pay in cash at the gym. Packages are paid at the start of each month, before your first session.</p>
+        </div>
+      </div>
+      <form id="startForm" novalidate>
+        <div class="row2">
+          <label for="f-name">Your name<input id="f-name" name="name" autocomplete="name" placeholder="First and last name" required></label>
+          <label for="f-pkg">Package
+            <select id="f-pkg" name="pkg">
+              <option>Kickstart ($199/mo)</option>
+              <option>Momentum ($299/mo)</option>
+              <option selected>Transform ($449/mo)</option>
+              <option>Inner Circle VIP ($699/mo)</option>
+              <option>Custom Plan ($99 one time)</option>
+              <option>Single session ($40/hr)</option>
+            </select>
+          </label>
+        </div>
+        <label for="f-goal">Main goal
+          <select id="f-goal" name="goal">
+            <option>Build muscle and gain weight</option>
+            <option>Lose fat</option>
+            <option>Get stronger</option>
+            <option>Get healthier and more active</option>
+          </select>
+        </label>
+        <label for="f-days">Days you can train
+          <input id="f-days" name="days" placeholder="e.g. Mon, Wed, Sat evenings">
+        </label>
+        <label for="f-note">Anything I should know?
+          <textarea id="f-note" name="note" placeholder="Injuries, allergies, schedule, questions"></textarea>
+        </label>
+        <button class="btn" type="submit">Prepare my message</button>
+        <div class="out" id="out" hidden>
+          <pre id="msg"></pre>
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+            <button class="btn small" type="button" id="copy">Copy message</button>
+            <span class="status" id="status" role="status"></span>
+          </div>
+          <p class="hint">Paste it into a text to (916) 839-8119 or a DM to <a href="https://www.instagram.com/hasib.jahanmal/" target="_blank" rel="noopener">@hasib.jahanmal</a> on Instagram.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="sign">Just <span>start.</span></div>
+    <div class="foot-meta">
+      <a href="https://www.instagram.com/hasib.jahanmal/" target="_blank" rel="noopener">Instagram @hasib.jahanmal</a>
+      <small>© 2026 Hasib Jahanmal · Personal training &amp; nutrition · Sacramento, CA</small>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var sel = document.getElementById('f-pkg');
+  document.querySelectorAll('[data-pick]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var name = b.getAttribute('data-pick');
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].text.indexOf(name) === 0) sel.selectedIndex = i;
+      }
+      document.getElementById('start').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      setTimeout(function () { document.getElementById('f-name').focus({ preventScroll: true }); }, 400);
+    });
+  });
+
+  var vid = document.getElementById('reel-video');
+  var tog = document.getElementById('reel-toggle');
+  function setTog() { tog.textContent = vid.paused ? 'Play' : 'Pause'; tog.setAttribute('aria-label', vid.paused ? 'Play video' : 'Pause video'); }
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { vid.removeAttribute('autoplay'); vid.pause(); }
+  tog.addEventListener('click', function () { if (vid.paused) { vid.play().catch(function () {}); } else { vid.pause(); } });
+  vid.addEventListener('play', setTog); vid.addEventListener('pause', setTog); setTog();
+
+  var form = document.getElementById('startForm');
+  var msg = document.getElementById('msg');
+  var out = document.getElementById('out');
+  var status = document.getElementById('status');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = form.elements;
+    var name = f.name.value.trim();
+    if (!name) { f.name.focus(); f.name.setAttribute('aria-invalid', 'true'); f.name.placeholder = 'Add your name to continue'; return; }
+    f.name.removeAttribute('aria-invalid');
+    var lines = [
+      'Hi Coach Hasib, my name is ' + name + '.',
+      "I'd like to start the " + f.pkg.value + ' package.',
+      'My main goal: ' + f.goal.value.toLowerCase() + '.'
+    ];
+    if (f.days.value.trim()) lines.push('I can train: ' + f.days.value.trim() + '.');
+    if (f.note.value.trim()) lines.push('Notes: ' + f.note.value.trim());
+    lines.push('Please send me the questionnaire. Thanks!');
+    msg.textContent = lines.join('\n');
+    status.textContent = '';
+    out.hidden = false;
+  });
+
+  document.getElementById('copy').addEventListener('click', function () {
+    var text = msg.textContent;
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(msg);
+      var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      status.textContent = 'Selected. Press Ctrl/Cmd + C to copy';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () { status.textContent = 'Copied'; }, fallback);
+    } catch (err) { fallback(); }
+  });
+})();
+</script>
+
+</body>
+</html>
